@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Home, Navbar, NoMatch, Login, Register, IssueTracker} from './components';
+import { Switch, Route, ProtectedRoute } from 'react-router-dom';
+import Container from '@mui/material/Container';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <>
+        <Navbar />
+        <Container fixed>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+                <ProtectedRoute exact path="/issue_tracker" component={IssueTracker} />
+                <Route component={NoMatch} />
+            </Switch>
+        </Container>
+    </>
+)
 
 export default App;
