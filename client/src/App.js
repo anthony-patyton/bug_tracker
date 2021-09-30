@@ -1,21 +1,21 @@
-import { Home, Navbar, NoMatch, Login, Register, IssueTracker} from './components';
-import { Switch, Route, ProtectedRoute } from 'react-router-dom';
+import { Home, Navbar, NoMatch, Login, Register, ProtectedRoute, FetchUser } from './components';
+import { Switch, Route, }  from 'react-router-dom';
 import Container from '@mui/material/Container';
-import React from 'react';
 
 const App = () => (
-    <>
-        <Navbar />
-        <Container fixed>
-            <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
-                <ProtectedRoute exact path="/issue_tracker" component={IssueTracker} />
-                <Route component={NoMatch} />
-            </Switch>
-        </Container>
-    </>
+  <>
+    <Navbar />
+    <FetchUser>
+      <Container fixed>
+        <Switch>
+          <ProtectedRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route component={NoMatch} />
+        </Switch>
+      </Container>
+    </FetchUser>
+  </>
 )
 
 export default App;
